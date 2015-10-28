@@ -57,7 +57,14 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
-  }
+  },
+
+  oauth51: {
+    clientID:     process.env.OAUTH51_ID || 'id',
+    clientSecret: process.env.OAUTH51_SECRET || 'secret',
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/oauth51/callback'
+  },
+
 };
 
 // Export the config object based on the NODE_ENV
