@@ -1,6 +1,13 @@
-<div class="col-md-12">
+<div ng-include="'components/navbar/navbar.html'"></div>
 
-
-
-
+<div class="container">
+  <p>Everybody can see the list only the logged on can rate the proposal.</p>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="proposal in proposals">
+        <strong>{{proposal.title}}</strong><br>
+        <span class="text-muted">{{proposal.description}}</span>
+        <input ng-show="alreadyRated()" ng-modal={{newRating}} />
+        <a ng-click="rateAt(newRating)" class="vote"><span class="glyphicon glyphicon-mark pull-right"></span></a>
+    </li>
+  </ul>
 </div>

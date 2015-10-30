@@ -4,7 +4,10 @@ angular.module('lambdaConApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
+      'link': '/',
+    },{
+      'title': 'Proposals',
+      'link': '/proposals'
     }];
 
     $scope.isCollapsed = true;
