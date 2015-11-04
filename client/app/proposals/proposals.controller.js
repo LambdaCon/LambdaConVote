@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lambdaConApp')
-  .controller('ProposalsCtrl', function ($scope, Auth) {
+  .controller('ProposalsCtrl', function ($scope, Auth, Proposal) {
 
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
@@ -11,10 +11,10 @@ angular.module('lambdaConApp')
       $scope.submitted = true;
 
       if(form.$valid) {
-        Proposal.create({
+        Proposal.save({
           title: $scope.proposal.title,
           description: $scope.proposal.description
-        })
+        }).$promise
         .then( function() {
           // Account created, redirect to home
           console.log("OK!!!!");
