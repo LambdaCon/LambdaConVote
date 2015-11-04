@@ -1,12 +1,55 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
+
+  <div ng-show="isAdmin()">
+    <h2>Only moderator can add proposals</h2>
+
+    <form class="form" name="form" ng-submit="createProposal(form)" novalidate>
+
+      <div class="form-group" ng-class="{ 'has-success': form.title.$valid && submitted,
+                                          'has-error': form.title.$invalid && submitted }">
+        <label>Title</label>
+
+        <input type="text" name="title" class="form-control" ng-model="proposal.title" required/>
+        <p class="help-block" ng-show="form.title.$error.required && submitted">
+          A title is required
+        </p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-success': form.description.$valid && submitted,
+                                          'has-error': form.description.$invalid && submitted }">
+        <label>Description</label>
+
+        <input type="textarea" name="description" class="form-control" ng-model="proposal.description" required mongoose-error/>
+        <p class="help-block" ng-show="form.description.$error.description && submitted">
+          Doesn't look like a valid description.
+        </p>
+        <p class="help-block" ng-show="form.description.$error.required && submitted">
+          Description is required
+        </p>
+        <p class="help-block" ng-show="form.description.$error.mongoose">
+          {{ errors.description }}
+        </p>
+      </div>
+
+      <button class="btn btn-lg btn-primary" type="submit">
+        Add proposal
+      </button>
+
+    </form>
+
+    <hr>
+
+  </div>
+
+
   <p>Everybody can see the list only the logged on can rate the proposal.</p>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="proposal in proposals">
         <strong>{{proposal.title}}</strong><br>
         <span class="text-muted">{{proposal.description}}</span>
-        <input ng-show="alreadyRated()" ng-modal={{newRating}} />
+        <input ng-show="alreadyRated()" ng-model={{newRating}} />
         <a ng-click="rateAt(newRating)" class="vote"><span class="glyphicon glyphicon-mark pull-right"></span></a>
     </li>
   </ul>
