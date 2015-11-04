@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ProposalSchema = new Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  title: String,
+  description: String,
+  rating: [{}]
 });
 
 module.exports = mongoose.model('Proposal', ProposalSchema);

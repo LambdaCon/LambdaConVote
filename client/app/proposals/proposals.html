@@ -49,8 +49,9 @@
     <li class="list-group-item" ng-repeat="proposal in proposals">
         <strong>{{proposal.title}}</strong><br>
         <span class="text-muted">{{proposal.description}}</span>
-        <input ng-show="alreadyRated()" ng-model={{newRating}} />
-        <a ng-click="rateAt(newRating)" class="vote"><span class="glyphicon glyphicon-mark pull-right"></span></a>
+        <!-- <input ng-show="alreadyRated()" ng-model={{newRating}} />
+        <a ng-click="rateAt(newRating)" class="vote"><span class="glyphicon glyphicon-mark pull-right"></span></a> -->
+        <a ng-click="delete(proposal)" ng-show="isAdmin()" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
     </li>
   </ul>
 </div>

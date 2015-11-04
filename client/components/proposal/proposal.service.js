@@ -1,7 +1,7 @@
 angular.module('lambdaConApp')
   .factory('Proposal', function ($resource) {
-    
-    return $resource('/api/papers/:id/:controller', {
+
+    return $resource('/api/proposals/:id/:controller', {
       id: '@_id'
     },
     {
