@@ -35,6 +35,14 @@ function loadProfile(profile, accessToken, url) {
   return promise;
 };
 
+var getRole = function (profile) {
+  if (profile.is_admin)
+    return 'admin';
+  if (profile.moderator)
+    return 'moderator';
+  return 'user';
+}
+
 
 exports.setup = function (User, config) {
   var oauth51Config = {
@@ -53,13 +61,14 @@ exports.setup = function (User, config) {
     function(accessToken, refreshToken, profile, done) {
       // console.log("accessToken: ", accessToken, "refreshToken: ", refreshToken, "profile: ", profile);
       loadProfile(profile, accessToken, oauth51Config.profileUrl).then(function (profile) {
+        console.log("Profile: ", profile);
         return User.findOne({ 'oauth51.id': profile.id }).exec().then(function (result) {
           console.log("Results: ", result);
           var user = result || new User();
           // console.log("User found ... ", user);
           user.name = profile.name;
           user.email = profile.email;
-          user.role = profile.is_admin ? 'admin' : 'user';
+          user.role = getRole(profile);
           user.username = profile.username;
           user.provider = 'oauth51';
           profile.accessToken = accessToken;

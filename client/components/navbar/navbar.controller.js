@@ -14,6 +14,12 @@ angular.module('lambdaConApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.isLoggedAsAdmin = function () {
+      return Auth.isAdmin() && Auth.isLoggedIn();
+    }
+    $scope.isLoggedAsUser = function () {
+      return (!Auth.isAdmin()) && Auth.isLoggedIn();
+    }
 
     $scope.logout = function() {
       Auth.logout();
