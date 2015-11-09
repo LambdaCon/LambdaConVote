@@ -6,7 +6,10 @@ var mongoose = require('mongoose'),
 var ProposalSchema = new Schema({
   title: String,
   description: String,
-  rating: [{}]
+  rate: Number,
+  ratings: [{}]
 });
 
 module.exports = mongoose.model('Proposal', ProposalSchema);
+
+// todo usare il virtual per il rate 

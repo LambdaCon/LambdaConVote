@@ -6,8 +6,25 @@ angular.module('lambdaConApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.proposals = [];
+    $scope.alreadyRated = function (proposal) {
+      // console.log("already", proposal);
+      return proposal.ratings.some(function (p) {
+        console.log("some:", p.userId === Auth.getCurrentUser()._id, p.userId, Auth.getCurrentUser()._id);
+        return p.userId === Auth.getCurrentUser()._id;
+      });
+    };
+
+    $scope.rateAt = function (proposal, rate) {
+      console.log("rate at: ", rate, proposal);
+      $http.put('/api/proposals/' + proposal._id + "/rate", { rate: rate, userId: Auth.getCurrentUser()._id })
+      .success(function(res) {
+        console.log("res: ", res);
+      });
+    };
 
     $http.get('/api/proposals').success(function(proposals) {
+      console.log(proposals);
       $scope.proposals = proposals;
       socket.syncUpdates('proposal', $scope.proposals);
     });
