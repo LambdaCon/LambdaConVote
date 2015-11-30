@@ -5,7 +5,7 @@ Scaricare il repo e aggiornare le dipendenze con: `npm install` e `bower install
 Se non si ha installato bower insallarlo con `npm intall -g bower`, analogamente per grunt
 installarlo con `npm install -g grunt-cli`.
 
-Lanciare il server con `grunt seve`, come prima cosa occorre registrarsi sul server OAuth andando su http://localhost:9000/login. Una volta registrati ditemelo che vi metto come moderatori così potete aggingere proposals.
+Lanciare il server con `grunt seve`, come prima cosa occorre registrarsi sul server OAuth andando su (http://localhost:9000/login). Una volta registrati ditemelo che vi metto come moderatori così potete aggingere proposals.
 
  Se andate su http://localhost:9000/proposals e non siete registrati potete vedere delle proposals ma non potete votare.
 
