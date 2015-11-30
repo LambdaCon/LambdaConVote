@@ -1,4 +1,4 @@
-## LambdaconVote
+## LambdaConVote 
 
 Scaricare il repo e aggiornare le dipendenze con: `npm install` e `bower install`
 
